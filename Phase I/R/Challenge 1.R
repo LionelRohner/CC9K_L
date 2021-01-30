@@ -31,15 +31,13 @@ sum(a[which(a %% 3 == 0 | a %% 5 ==0)])
 
 
 
-A <- 1:10^6
+A <- 0:10^6
 
-B <- A[which(A %% 3 == 0)]
 
-C <- setdiff(A,B)
+A[which(A %% 3 == 0 | A %% 5 == 0)][78634]
 
-C <- C[which(C %% 5 == 0)]
-
-sum(B) + sum (C)
+B <- A[which(A %% 3 == 0 | A %% 5 == 0)]
+sum(B)
 
 
 
@@ -74,9 +72,8 @@ test <- benchmark("Algo 1" = {
                   C <- C[which(C %% 5 == 0)]
                   
                   sum(B) + sum (C)
-                }
-                )
+                },
+                replications = 10)
 
+test$meanTime <- test$elapsed/test$replications
 test
-# avg speed
-test$elapsed/test$replications
