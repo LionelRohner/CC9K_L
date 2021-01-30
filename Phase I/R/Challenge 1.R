@@ -55,13 +55,13 @@ test <- benchmark("Algo 1" = {
                   
                 },
                 
-                # "Algo 3" = {
-                #   A <- 1:10^6
-                #   
-                #   sum(A[setdiff(union(which(A %% 3 == 0), which(A %% 5 == 0)),
-                #                 intersect(which(A %% 3 == 0), which(A %% 5 == 0)))])
-                # },
-                
+                "Algo 3" = {
+                  A <- 1:10^6
+
+                  sum(A[setdiff(union(which(A %% 3 == 0), which(A %% 5 == 0)),
+                                intersect(which(A %% 3 == 0), which(A %% 5 == 0)))])
+                },
+
                 "Algo 4" = {
                   A <- 1:10^6
                   
