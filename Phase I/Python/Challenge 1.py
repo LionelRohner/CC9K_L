@@ -34,7 +34,6 @@ code_block = """
 import numpy as np
 
 print(np.array([i for i in range(1,10**6) if i % 3 == 0 or i % 5 == 0], dtype=np.int64).sum())
-
 """
 elapsed_time = timeit.timeit(code_block, number=10)
 timeAlgo3 = np.mean(elapsed_time)
