@@ -149,7 +149,7 @@ def _fib(n):
         else:
             return (d, c + d)
 
-(fibonacci(2*(4*10**6))-1)
+(fibonacci(7999996)-1)
 
 """
 # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
