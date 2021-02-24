@@ -8,34 +8,11 @@ import timeit as tmt
 
 res = pd.DataFrame({
     "Algo1": [],
-    "Algo2": []
+    "Algo2": [],
+    "Algo3": []
 })
 
-
-# A = np.array([[1,1],
-#               [1,0]],dtype=np.int64)
-
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-
-F0 = np.array([[0],[1]])
-
-
-#
-# lst = []
-# # sum = 0
-# # standard loop over each Fibonacci Number up to 4 Mio
-# for i in range(1,4*10**6):
-#
-#     # each new number in the sequence is found in the right corner of the matrix X
-#     # Since it is indexed right away, the x is in lower case
-#     x = np.linalg.matrix_power(A,i)[0,1]
-#     if x % 2 == 0:
-#        lst.append(x)
-#        # sum += int(x)
-#
-# print(lst)
-# print(math.sum(lst))
-
 
 
 def fibMatrix(n):
@@ -56,55 +33,169 @@ def fibMatrix(n):
 # n = 1000000
 #
 # print(np.linalg.matrix_power(A,n)[0,1])
-# print(math.fsum(lst))
+#
 # blin =  __builtins__.sum(fibMatrix(10**4))
 # print(blin)
 # d = decimal.Decimal(blin)
 # print(format(d, '.6e'))
 # quit()
 
-
-
-# def fib_to(n):
-#      fibs = [0, 1]
-#      for i in range(2, n+1):
-#          fibs.append(fibs[-1] + fibs[-2])
-#      return fibs
+# algo1 = """
+# import numpy as np
 #
-algo1 = """
-def fib_to(n):
-     fibs = [0, 1]
-     for i in range(2, n+1):
-         fibs.append(fibs[-1] + fibs[-2])
-     return fibs
+# n = 4000
+# A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+#
+# np.linalg.matrix_power(A,n)[0,1]
+# # print("done")
+# """
+#
+# # tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
+# # res["Algo1"] = tst1
+# # print(np.mean(tst1))
+#
+# elapsed_time = tmt.timeit(algo1, number=10000)
+# print("algo1 ", elapsed_time)
+# print("Loop Done.")
+
+# Recursive
 
 
-fib_to(4*10**6)[-1]
-print("done")
-"""
-
-tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(3)]
-res["Algo1"] = tst1
-print("Loop Done.")
-print(np.mean(tst1))
-
-
-
+nIter = 2
 
 algo2 = """
 import numpy as np
 
-n = 4*10**6
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-
-np.linalg.matrix_power(A,n)[0,1]
-print("done")
+np.linalg.matrix_power(A, 2*(4*10**6))[0, 1] - 1
+# print("done")
 """
 
-tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(3)]
-res["Algo2"] = tst2
+# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
+# res["Algo2"] = tst2
+# print(np.mean(tst2))
+
+elapsed_time = tmt.timeit(algo2, number=nIter)
+print("algo2: ", (elapsed_time/nIter))
+print("Loop Done.")
+
+algo3 = """
+import numpy as np
+n = 4000000
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+np.linalg.matrix_power(A, n)[0, 1] - 1
+# print("done")
+"""
+
+# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
+# res["Algo2"] = tst2
+# print(np.mean(tst2))
+
+elapsed_time = tmt.timeit(algo3, number=nIter)
+print("algo3: ", elapsed_time/nIter)
+print("Loop Done.")
+
+
+algo4 = """
+import numpy as np
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+F2k = np.linalg.matrix_power(A, (2*10**6))[0, 1]*(2*np.linalg.matrix_power(A, (2*10**6) + 1)[0, 1] - np.linalg.matrix_power(A, (2*10**6))[0, 1])
+# print("done")
+"""
+# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
+# res["Algo2"] = tst2
+# print(np.mean(tst2))
+
+elapsed_time = tmt.timeit(algo4, number=nIter)
+print("algo4: ", elapsed_time/nIter)
+print("Loop Done.")
+
+
+
+algo5 = """
+import numpy as np
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+Fk = np.linalg.matrix_power(A, (2*10**6))
+F2k = Fk[0,1]*(2*Fk[0, 0] - Fk[0, 1])
+# print("done")
+"""
+# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
+# res["Algo2"] = tst2
+# print(np.mean(tst2))
+
+elapsed_time = tmt.timeit(algo5, number=nIter)
+print("algo5: ", elapsed_time/nIter)
 print("Loop Done.")
 
 print(res)
-print(np.mean(tst2))
+
+algoComp = """
+#### Comparison
+#
+# Fast doubling Fibonacci algorithm (Python)
+#
+# Copyright (c) 2015 Project Nayuki
+# All rights reserved. Contact Nayuki for licensing.
+# https://www.nayuki.io/page/fast-fibonacci-algorithms
+
+# (Public) Returns F(n).
+
+def fibonacci(n):
+    if n < 0:
+        raise ValueError("Negative arguments not implemented")
+    return _fib(n)[0]
+
+
+# (Private) Returns the tuple (F(n), F(n+1)).
+def _fib(n):
+    if n == 0:
+        return (0, 1)
+    else:
+        a, b = _fib(n // 2)
+        c = a * (b * 2 - a)
+        d = a * a + b * b
+        if n % 2 == 0:
+            return (c, d)
+        else:
+            return (d, c + d)
+
+(fibonacci(4*10**6)-1)
+
+"""
+# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
+# res["Algo2"] = tst2
+# print(np.mean(tst2))
+
+elapsed_time = tmt.timeit(algo5, number=nIter)
+print("algoComp: ", elapsed_time/nIter)
+print("Loop Done.")
+
+quit()
+
+
+algoBF = """
+import numpy as np
+
+def fibMatrix(n):
+    lst = []
+    # sum = 0
+
+    A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
+
+    # standard loop over each Fibonacci Number up to 4 Mio
+    for i in range(0,n,3):
+        
+        # each new number in the sequence is found in the right corner of the matrix X
+        # Since it is indexed right away, the x is in lower case
+        lst.append(np.linalg.matrix_power(A,i)[0,1])
+
+    return(sum(lst))
+
+fibMatrix(4*10**6)
+    
+print("done")
+"""
+
+
+#
 

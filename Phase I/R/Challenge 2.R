@@ -16,6 +16,7 @@
 #------------------------------------------------------------------------------#
 
 library(rbenchmark)
+library(stats)
 
 #------------------------------------------------------------------------------#
 # Functions ---------------------------------------------------------------
@@ -46,3 +47,32 @@ fibo <- function(n){
 }
   # nxt <- prev1 + prev2
 fibo(10)
+
+
+n = 200
+fl <- data.frame()
+for (i in 1:n){
+  fl <- rbind(fl, fibo(i))
+}
+fl$index <- seq(1:n)
+colnames(fl) <- c("Fibs","Index")
+fl
+
+modl <- lm(Fibs ~ Index, data = fl)
+
+predFibs <- data.frame(Index = c(3,4,5))
+
+predict(modl, newdata = predFibs)
+
+
+# Load the data
+data("cars", package = "datasets")
+# Build the model
+model <- lm(dist ~ speed, data = cars)
+model
+
+new.speeds <- data.frame(
+  speed = c(12, 19, 24)
+)
+
+predict(model, newdata = new.speeds)
