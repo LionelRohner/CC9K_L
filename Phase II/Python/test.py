@@ -5,21 +5,28 @@ x = 255
 y = 140
 m = 15
 
-# 1.)
-xlow = x % m
-xhigh = np.floor(x/m)
 
-# 2.)
-ylow = y % m
-yhigh = np.floor(y/m)
+def karatsuba(x , y, m):
+    """
 
-# 3.)
-a = xhigh*yhigh
-b = (xlow + xhigh)*(ylow + yhigh)
-c = xlow*ylow
+    :param x: some int
+    :param y: some other int
+    :param m: modulo, such that approx sqrt(x)
+    :return: product of x and y
+    """
 
-# Result
-xy = a*m**2+(b-a-c)*m+c
+    # 1.)
+    xlow = x % m
+    xhigh = x//m
 
-print(xy)
+    # 2.)
+    ylow = y % m
+    yhigh = y//m
 
+    # 3.)
+    a = xhigh*yhigh
+    b = (xlow + xhigh)*(ylow + yhigh)
+    c = xlow*ylow
+
+    # Result
+    return(a*m**2+(b-a-c)*m+c)

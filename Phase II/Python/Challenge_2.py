@@ -40,23 +40,21 @@ def fibMatrix(n):
 # print(format(d, '.6e'))
 # quit()
 
-# algo1 = """
-# import numpy as np
-#
-# n = 4000
-# A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-#
-# np.linalg.matrix_power(A,n)[0,1]
-# # print("done")
-# """
-#
-# # tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
-# # res["Algo1"] = tst1
-# # print(np.mean(tst1))
-#
-# elapsed_time = tmt.timeit(algo1, number=10000)
-# print("algo1 ", elapsed_time)
-# print("Loop Done.")
+algo1 = """
+import numpy as np
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+Fk = np.linalg.matrix_power(A, (2*10**6))
+F2k = Fk[0,1]*(2*Fk[0, 0] - Fk[0, 1])
+# print("done")
+"""
+
+# tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
+# res["Algo1"] = tst1
+# print(np.mean(tst1))
+
+elapsed_time = tmt.timeit(algo1, number=10000)
+print("algo1 ", elapsed_time)
+print("Loop Done.")
 
 # Recursive
 
@@ -114,9 +112,28 @@ print("Loop Done.")
 
 algo5 = """
 import numpy as np
+
+def karatsuba(x , y, m):
+    # 1.)
+    xlow = x % m
+    xhigh = x//m
+
+    # 2.)
+    ylow = y % m
+    yhigh = y//m
+
+    # 3.)
+    a = xhigh*yhigh
+    b = (xlow + xhigh)*(ylow + yhigh)
+    c = xlow*ylow
+
+    # Result
+    return(a*m**2+(b-a-c)*m+c)
+
+
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
 Fk = np.linalg.matrix_power(A, (2*10**6))
-F2k = Fk[0,1]*(2*Fk[0, 0] - Fk[0, 1])
+F2k = karatsuba(x = Fk[0,1], y = (2*Fk[0, 0] - Fk[0, 1]), m = 
 # print("done")
 """
 # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
