@@ -1,9 +1,5 @@
 import numpy as np
-
-
-x = 255
-y = 140
-m = 15
+import decimal
 
 
 def karatsuba(x , y, m):
@@ -30,3 +26,13 @@ def karatsuba(x , y, m):
 
     # Result
     return(a*m**2+(b-a-c)*m+c)
+
+
+# how bis is it
+
+
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+blin = np.linalg.matrix_power(A, 2*(4*10**6))[0, 0] - 1
+print("printing")
+d = decimal.Decimal(blin)
+print(format(d, '.6e'))

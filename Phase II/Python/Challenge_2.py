@@ -45,8 +45,9 @@ def fibMatrix(n):
 algo1 = """
 import numpy as np
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-Fk = np.linalg.matrix_power(A, (2*10**6))
-F2k = Fk[0,1]*(2*Fk[0, 0] - Fk[0, 1])
+Fk = np.linalg.matrix_power(A, (2*10**6)+1)
+
+(Fk[0,1]*(2*Fk[0, 0] - Fk[0, 1]))-1
 # print("done")
 """
 
@@ -134,9 +135,9 @@ def karatsuba(x , y, m):
 
 
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-Fk = np.linalg.matrix_power(A, (2*10**6))
+Fk = np.linalg.matrix_power(A, (2*10**6)+1)
 
-F2k = karatsuba(x = Fk[0,1], y = (2*Fk[0, 0] - Fk[0, 1]), m = 2000)
+karatsuba(x = Fk[0,1], y = (2*Fk[0, 0] - Fk[0, 1]), m = 2000) - 1
 # print("done")
 """
 # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
