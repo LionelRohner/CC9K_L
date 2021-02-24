@@ -36,3 +36,6 @@ blin = np.linalg.matrix_power(A, 2*(4*10**6))[0, 0] - 1
 print("printing")
 d = decimal.Decimal(blin)
 print(format(d, '.6e'))
+
+
+9.583022e+1671900
