@@ -28,27 +28,15 @@ def fibMatrix(n):
     return(lst)
 
 
-# np.linalg.matrix_power uses binary exponentiation to compute the end result (the pure Python source is here), so it is just a smart sequence of calls to np.dot. If the arrays are of object dtype, np.dot uses the objects __mul__ and __add__ methods. So for the OP's use case, simply setting A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2) will take advantage of Python's arbitrary precision integers and never overflow. – Jaime Feb 1 '15 at 7:22
-
-# n = 1000000
-#
-# print(np.linalg.matrix_power(A,n)[0,1])
-#
-# blin =  __builtins__.sum(fibMatrix(10**4))
-# print(blin)
-# d = decimal.Decimal(blin)
-# print(format(d, '.6e'))
-# quit()
-
 
 
 algo1 = """
 import numpy as np
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-Fk = np.linalg.matrix_power(A, (2*10**6)+1)
+Fk = np.linalg.matrix_power(A, (1999999))
 
+# F_k        F_k+1      F_k
 (Fk[0,1]*(2*Fk[0, 0] - Fk[0, 1]))-1
-# print("done")
 """
 
 # tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
@@ -64,56 +52,38 @@ print("Loop Done.")
 # Recursive
 
 
-# algo2 = """
-# import numpy as np
-#
-# A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-# np.linalg.matrix_power(A, 2*(4*10**6))[0, 1] - 1
-# # print("done")
-# """
-#
-# # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# # res["Algo2"] = tst2
-# # print(np.mean(tst2))
-#
-# elapsed_time = tmt.timeit(algo2, number=nIter)
-# print("algo2: ", (elapsed_time/nIter))
-# print("Loop Done.")
+algo2 = """
+import numpy as np
 
-# algo3 = """
-# import numpy as np
-# n = 4000000
-# A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-# np.linalg.matrix_power(A, n)[0, 1] - 1
-# # print("done")
-# """
-#
-# # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# # res["Algo2"] = tst2
-# # print(np.mean(tst2))
-#
-# elapsed_time = tmt.timeit(algo3, number=nIter)
-# print("algo3: ", elapsed_time/nIter)
-# print("Loop Done.")
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+np.linalg.matrix_power(A, 7999996)[0, 1] - 1
+"""
 
+# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
+# res["Algo2"] = tst2
+# print(np.mean(tst2))
 
-# algo4 = """
+elapsed_time = tmt.timeit(algo2, number=nIter)
+print("algo2: ", (elapsed_time/nIter))
+print("Loop Done.")
+
+# algoCrap = """
 # import numpy as np
 # A = np.array([1,1,1,0], dtype=object).reshape(2,2)
 # F2k = np.linalg.matrix_power(A, (2*10**6))[0, 1]*(2*np.linalg.matrix_power(A, (2*10**6) + 1)[0, 1] - np.linalg.matrix_power(A, (2*10**6))[0, 1])
 # # print("done")
 # """
-# # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# # res["Algo2"] = tst2
+# # tst2 = [tmt.timeit(stmt=algoCrap, number=i) for i in range(5000)]
+# # res["algoCrap"] = tst2
 # # print(np.mean(tst2))
 #
-# elapsed_time = tmt.timeit(algo4, number=nIter)
+# elapsed_time = tmt.timeit(algoCrap, number=nIter)
 # print("algo4: ", elapsed_time/nIter)
 # print("Loop Done.")
 
 
 
-algo5 = """
+algo3 = """
 import numpy as np
 
 def karatsuba(x , y, m):
@@ -135,17 +105,16 @@ def karatsuba(x , y, m):
 
 
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-Fk = np.linalg.matrix_power(A, (2*10**6)+1)
+Fk = np.linalg.matrix_power(A, 1999999)
 
-karatsuba(x = Fk[0,1], y = (2*Fk[0, 0] - Fk[0, 1]), m = 2000) - 1
-# print("done")
+karatsuba(x = Fk[0,1], y = (2*Fk[0, 0] - Fk[0, 1]), m = 20000) - 1 
 """
 # tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
 # res["Algo2"] = tst2
 # print(np.mean(tst2))
 
-elapsed_time = tmt.timeit(algo5, number=nIter)
-print("algo5: ", elapsed_time/nIter)
+elapsed_time = tmt.timeit(algo3, number=nIter)
+print("algo3: ", elapsed_time/nIter)
 print("Loop Done.")
 
 print(res)
@@ -187,7 +156,7 @@ def _fib(n):
 # res["Algo2"] = tst2
 # print(np.mean(tst2))
 
-elapsed_time = tmt.timeit(algo5, number=nIter)
+elapsed_time = tmt.timeit(algoComp, number=nIter)
 print("algoComp: ", elapsed_time/nIter)
 print("Loop Done.")
 

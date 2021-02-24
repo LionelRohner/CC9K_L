@@ -29,13 +29,15 @@ def karatsuba(x , y, m):
 
 
 # how bis is it
-
-
 A = np.array([1,1,1,0], dtype=object).reshape(2,2)
-blin = np.linalg.matrix_power(A, 2*(4*10**6))[0, 0] - 1
+blin = np.linalg.matrix_power(A, 3)[0,0]
+print(blin)
+quit()
+A = np.array([1,1,1,0], dtype=object).reshape(2,2)
+blin = np.linalg.matrix_power(A, (4*10**6-2))[0, 0]
 print("printing")
-d = decimal.Decimal(blin)
-print(format(d, '.6e'))
+# d = decimal.Decimal(blin)
+# print(format(d, '.6e'))
+print(blin%2)
 
-
-9.583022e+1671900
+print(4*10**6-2)
