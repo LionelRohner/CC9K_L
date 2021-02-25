@@ -10,11 +10,18 @@ res = pd.DataFrame({
     "Algo3": []
 })
 
+import numpy as np
+
 A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
 
-print(sum([np.linalg.matrix_power([[1,1],[1,0]], i)[0,1] for i in range(0,36,3)]))
+F_i =  0
+i = 0
+while F_i <= 4000000:
+    F_i += (np.linalg.matrix_power(A, i)[0, 1])
+    i += 3
+print(F_i)
 
-# quit()
+quit()
 
 # 4 F(n-3) + F(n-6)
 #
@@ -58,12 +65,15 @@ print("Loop Done.")
 algo2 = """
 import numpy as np
 
-F_i = 0
+A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
+
+F_i = []
 i = 0
-while F_i <= 4000000:
-    F_i +=  np.linalg.matrix_power([[1,1],[1,0]], i)[0,1]
+while F_i < 4000000:
+    F_i.append(np.linalg.matrix_power(A,i)[0,1])
     i += 3
-# print(F_i)
+    
+sum(F_i)
 """
 
 # tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
