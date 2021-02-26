@@ -1,178 +1,290 @@
 import numpy as np
-import math
-import decimal
 import pandas as pd
 import timeit as tmt
+import matplotlib.pyplot as plt
+
+def FibMatrix(A,n):
+    return(np.linalg.matrix_power(A,n))
 
 res = pd.DataFrame({
     "Algo1": [],
     "Algo2": [],
-    "Algo3": []
+    "Algo3": [],
+    "AlgoCheat1": [],
+    "AlgoCheat2": [],
+    "AlgoCheat3": [],
+    "AlgoCheat4": [],
+    "AlgoComp1": [],
+    "AlgoComp2": []
 })
 
+nIter = 5000
+
+# benchMeth = "Nenad"
+benchMeth = "Lionel"
+
+#######################################################################################################################
+
+algoN = "Algo1"
+
+algo= """
 import numpy as np
 
 A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
-
-F_i =  0
-i = 0
-while F_i <= 4000000:
-    F_i += (np.linalg.matrix_power(A, i)[0, 1])
-    i += 3
-print(F_i)
-
-quit()
-
-# 4 F(n-3) + F(n-6)
-#
-import numpy as np
-
-# A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
-#
-# i = 34
-#
-# (np.linalg.matrix_power(A, (i+1))[0,1] - 1)//2
-#
-# print(F_i)
-# print(4613732)
-
-
-algo1 = """
-import numpy as np
-
-A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
-
 
 F_i = 0
 i = 0
-while F_i <= 4000000:
-    F_i +=  np.linalg.matrix_power(A, i)[0,1]
+# sum = 0
+
+
+while F_i < 4000000:
+    # sum = sum + F_i
+    
+    F_i += np.linalg.matrix_power(A, i)[0,1]
+
     i += 3
+
 # print(F_i)
 """
 
-# tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
-# res["Algo1"] = tst1
-# print(np.mean(tst1))
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time]
+    print("Loop Done.")
+    print()
 
-nIter = 10000
+#######################################################################################################################
 
-elapsed_time = tmt.timeit(algo1, number=nIter)
-print("algo1 ", (elapsed_time / nIter))
-print("Loop Done.")
+algoN = "Algo2"
 
-
-algo2 = """
+algo= """
 import numpy as np
 
 A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
 
-F_i = []
+F_i = [0]
 i = 0
-while F_i < 4000000:
+
+while F_i[-1] < 4000000:
     F_i.append(np.linalg.matrix_power(A,i)[0,1])
     i += 3
     
-sum(F_i)
+sum(F_i[:-1])
+
+# print(sum(F_i[:-1])
 """
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
 
-# tst1 = [tmt.timeit(stmt=algo1, number=i) for i in range(5000)]
-# res["Algo1"] = tst1
-# print(np.mean(tst1))
+#######################################################################################################################
 
-nIter = 10000
+algoN = "Algo3"
 
-elapsed_time = tmt.timeit(algo2, number=nIter)
-print("algo2 ", (elapsed_time / nIter))
-print("Loop Done.")
+algo = """
+sum = 0
+F_n, F_np1 = 1, 1
+F_np2 = F_n + F_np1
+
+while F_np2 < 4000000:
+    sum += F_np2
+    F_n = F_np1 + F_np2
+    F_np1 = F_np2 + F_n
+    F_np2 = F_n + F_np1
+
+# print(sum)
+"""
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
+
+#######################################################################################################################
+
+algoN = "AlgoCheat1"
+
+algo = """
+
+sqrt5 = (5)**0.5
+phi = (sqrt5+1)/2
+i = 0
+F_i = 0
+# sum = 0
 
 
-algoCheat = """
+while F_i <= 4000000:
+    # sum += F_i 
+    F_i = ((phi**i)-(-phi)**-i)//sqrt5
+
+    i += 3
+    
+# print(sum)
+"""
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
+
+#######################################################################################################################
+#######################################################################################################################
+
+algoN = "AlgoCheat2"
+
+algo = """
 import numpy as np
 
 # A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
 
 (np.linalg.matrix_power([[1,1],[1,0]], (35))[0,1] - 1)//2
-
 """
-# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# res["Algo2"] = tst2
-# print(np.mean(tst2))
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
 
-elapsed_time = tmt.timeit(algoCheat, number=nIter)
-print("algoCheat: ", elapsed_time / nIter)
-print("Loop Done.")
+#######################################################################################################################
 
+algoN = "AlgoCheat3"
 
-algoCheat2 = """
+algo = """
 import numpy as np
 
-sum([np.linalg.matrix_power([[1,1],[1,0]], i)[0,1] for i in range(0,36,3)])
-
+sum([np.linalg.matrix_power([[1,1],[1,0]], i)[0,1] for i in range(0,35,3)])
 """
-# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# res["Algo2"] = tst2
-# print(np.mean(tst2))
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
 
-elapsed_time = tmt.timeit(algoCheat2, number=nIter)
-print("algoCheat2: ", elapsed_time / nIter)
-print("Loop Done.")
 
-algoCheat2 = """
+#######################################################################################################################
+
+algoN = "AlgoCheat4"
+
+algo = """
 from numpy.linalg import matrix_power as m
 
 (m([[1,1],[1,0]], (35))[0,1] - 1)//2
 """
-# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# res["Algo2"] = tst2
-# print(np.mean(tst2))
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
 
-elapsed_time = tmt.timeit(algoCheat2, number=nIter)
-print("algoCheat2: ", elapsed_time / nIter)
-print("Loop Done.")
+########################################################################################################################
 
+algoN = "AlgoComp1"
 
-
-algoComp = """
+algo = """
 sum = 0
 f1, f2 = 0, 1
 while f2 <= 4000000:
     if f2 % 2 == 0:
         sum += f2
     f1, f2 = f2, f1 + f2
+
 # print(sum)
 """
-# tst2 = [tmt.timeit(stmt=algo2, number=i) for i in range(5000)]
-# res["Algo2"] = tst2
-# print(np.mean(tst2))
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time / nIter]
+    print("Loop Done.")
+    print()
 
-elapsed_time = tmt.timeit(algoComp, number=nIter)
-print("algoComp: ", elapsed_time / nIter)
-print("Loop Done.")
 
-quit()
+########################################################################################################################
 
-algoBF = """
-import numpy as np
+algoN = "AlgoComp2"
 
-def fibMatrix(n):
-    lst = []
-    # sum = 0
+algo = """
+from sympy import fibonacci
 
-    A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
+F_i = 0
+i = 0
 
-    # standard loop over each Fibonacci Number up to 4 Mio
-    for i in range(0,n,3):
+while F_i <= 4000000:
 
-        # each new number in the sequence is found in the right corner of the matrix X
-        # Since it is indexed right away, the x is in lower case
-        lst.append(np.linalg.matrix_power(A,i)[0,1])
+    F_i += fibonacci(i)
 
-    return(sum(lst))
+    i += 3
 
-fibMatrix(4*10**6)
-
-print("done")
+# print(F_i)    
 """
+if benchMeth == "Nenad":
+    nIter = 10
+    tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
+    res[algoN] = tst
+    print()
+else:
+    elapsed_time = tmt.timeit(algo, number=nIter)
+    print(algoN,": ", elapsed_time / nIter)
+    res[algoN] = [elapsed_time]
+    print("Loop Done.")
+    print()
 
-print(res)
+
+########################################################################################################################
+# benchmark plot
+
+if benchMeth == "Nenad":
+    res.plot(ylim = [min(res.min()),max(res.max())])
+
+else:
+    res.boxplot()
+
+plt.show()
