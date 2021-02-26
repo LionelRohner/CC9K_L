@@ -17,7 +17,7 @@ class BenchPress:
 
         if self.benchMeth == "Nenad":
             if nIter == None:
-                nIter = 10
+                nIter = 100
 
             tst = [tmt.timeit(stmt=algo, number=i) for i in range(nIter)]
             self.res[algoN] = tst
@@ -42,6 +42,8 @@ class BenchPress:
             self.res.boxplot()
 
         plt.show()
+
+
 
     def returnRes(self):
         return(self.res)

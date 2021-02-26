@@ -16,11 +16,11 @@ data = {
     "AlgoCheat2": [],
     "AlgoCheat3": [],
     "AlgoComp1": [],
-    "AlgoComp2": []
+    "s3": []
 }
 
-# benchMarkus = bp.BenchPress(data, "Nenad")
-benchMarkus = bp.BenchPress(data = data, benchMeth = "Lionel")
+benchMarkus = bp.BenchPress(data, "Nenad")
+# benchMarkus = bp.BenchPress(data = data, benchMeth = "Lionel")
 
 
 #######################################################################################################################
@@ -118,7 +118,6 @@ while F_i <= 4000000:
 benchMarkus.getDaReps(algo = algo, algoN = algoN)
 
 #######################################################################################################################
-#######################################################################################################################
 
 algoN = "AlgoCheat1"
 
@@ -127,7 +126,7 @@ import numpy as np
 
 # A = np.array([1, 1, 1, 0], dtype=object).reshape(2, 2)
 
-(np.linalg.matrix_power([[1,1],[1,0]], (35))[0,1] - 1)//2
+(np.linalg.matrix_power([[1,1],[1,0]], (4000000))[0,1] - 1)//2
 """
 
 benchMarkus.getDaReps(algo = algo, algoN = algoN)
@@ -175,25 +174,52 @@ benchMarkus.getDaReps(algo = algo, algoN = algoN)
 
 ########################################################################################################################
 
-algoN = "AlgoComp2"
+# algoN = "AlgoComp2"
+#
+# algo = """
+# from sympy import fibonacci
+#
+# F_i = 0
+# i = 0
+#
+# while F_i <= 4000000:
+#
+#     F_i += fibonacci(i)
+#
+#     i += 3
+#
+# # print(F_i)
+# """
+#
+# benchMarkus.getDaReps(algo = algo, algoN = algoN)
 
-algo = """
-from sympy import fibonacci
 
-F_i = 0
-i = 0
+########################################################################################################################
+algoN = "s3"
 
-while F_i <= 4000000:
+s3 = """
+def get_fib_even_sum3():
+    import functools
+    @functools.lru_cache(None)
+    def fib2(n):
+        if n < 1:
+            return n
+        if n == 1:
+            return 2
+        return (4 * (fib2(n-1))) + fib2(n-2)
 
-    F_i += fibonacci(i)
+    f_sum = 0
+    i = 0
+    tmp_fib = 0
+    while tmp_fib < 4000000:
+        f_sum += tmp_fib
+        tmp_fib = fib2(i)
 
-    i += 3
-
-# print(F_i)
+        i += 1
+    return f_sum
 """
 
-benchMarkus.getDaReps(algo = algo, algoN = algoN)
-
+benchMarkus.getDaReps(algo=s3,algoN = algoN)
 
 ########################################################################################################################
 # benchmark plot
