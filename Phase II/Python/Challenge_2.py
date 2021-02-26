@@ -2,9 +2,11 @@ import numpy as np
 import pandas as pd
 import timeit as tmt
 import matplotlib.pyplot as plt
+import BenchPress as bp
+
 
 def FibMatrix(A,n):
-    return(np.linalg.matrix_power(A,n))
+    return(np.linalg.matrix_power(A,n)[0,1])
 
 res = pd.DataFrame({
     "Algo1": [],
