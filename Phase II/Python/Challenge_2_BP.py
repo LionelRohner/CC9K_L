@@ -19,8 +19,8 @@ data = {
     "s3": []
 }
 
-benchMarkus = bp.BenchPress(data, "Nenad")
-# benchMarkus = bp.BenchPress(data = data, benchMeth = "Lionel")
+# benchMarkus = bp.BenchPress(data, "Nenad")
+benchMarkus = bp.BenchPress(data = data, benchMeth = "Lionel")
 
 
 #######################################################################################################################
@@ -217,6 +217,8 @@ def get_fib_even_sum3():
 
         i += 1
     return f_sum
+    
+get_fib_even_sum3()
 """
 
 benchMarkus.getDaReps(algo=s3,algoN = algoN)
