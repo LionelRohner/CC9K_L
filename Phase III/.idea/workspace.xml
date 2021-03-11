@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35f137d7-ee6b-4c36-87d7-a5aba981507b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Phase II/Python/Challenge_2_BP.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Phase II/Python/Challenge_2_BP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Phase II/Python/res.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../Phase II/Python/res.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Phase III.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Phase III.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/.idea/Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Python/.idea/Python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Python/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Phase II/Python/Challenge_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Phase II/Python/Challenge_2_wrong.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python/Challenge_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/Challenge_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/test.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
