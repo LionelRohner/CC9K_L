@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35f137d7-ee6b-4c36-87d7-a5aba981507b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Phase II/Python/Challenge_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Phase II/Python/Challenge_2_wrong.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python/Challenge_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/Challenge_3.py" afterDir="false" />
     </list>
