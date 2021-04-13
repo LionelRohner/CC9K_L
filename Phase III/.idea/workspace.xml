@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35f137d7-ee6b-4c36-87d7-a5aba981507b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Python/Challenge_3_tester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Python/CheckRandomness.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Python/create permutations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Python/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/Challenge_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python/Challenge_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/HG1.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/Python/HG1.fasta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/HG2.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/Python/HG2.fasta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python/HG3.fasta" beforeDir="false" />
-    </list>
+    <list default="true" id="35f137d7-ee6b-4c36-87d7-a5aba981507b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

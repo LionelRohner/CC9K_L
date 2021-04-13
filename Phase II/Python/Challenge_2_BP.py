@@ -227,6 +227,6 @@ benchMarkus.getDaReps(algo=s3,algoN = algoN)
 # benchmark plot
 print(benchMarkus.returnRes())
 
-benchMarkus.dickPic()
+benchMarkus.plotBP()
 
 benchMarkus.saveCSV()

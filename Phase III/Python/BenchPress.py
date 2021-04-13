@@ -31,7 +31,7 @@ class BenchPress:
             print("Loop Done.")
             print()
 
-    def dickPic(self):
+    def plotBP(self):
 
         # depending on the method show propagation, i.e. the Nenadian Plot
         if self.benchMeth == "Nenad":
