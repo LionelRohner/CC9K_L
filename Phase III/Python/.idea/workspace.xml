@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0df014e-e466-4d18-9bbc-1152eb90887a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Challenge_3_tester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CheckRandomness.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/create permutations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Fasta_Nenad.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Challenge_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Challenge_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HG1.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/HG1.fasta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HG2.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HG3.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/HG3.fasta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HG4.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/HG4.fasta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckRandomness.py" beforeDir="false" afterPath="$PROJECT_DIR$/CheckRandomness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HG3_1.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/create permutations.py" beforeDir="false" afterPath="$PROJECT_DIR$/create permutations.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +47,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Challenge_3">
+  <component name="RunManager" selected="Python.Fasta_Nenad">
     <configuration name="Challenge_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,6 +111,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Fasta_Nenad" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Fasta_Nenad.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="create permutations" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,10 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Fasta_Nenad" />
         <item itemvalue="Python.Challenge_3" />
-        <item itemvalue="Python.Challenge_3_tester" />
-        <item itemvalue="Python.CheckRandomness" />
         <item itemvalue="Python.create permutations" />
+        <item itemvalue="Python.CheckRandomness" />
+        <item itemvalue="Python.Challenge_3_tester" />
       </list>
     </recent_temporary>
   </component>

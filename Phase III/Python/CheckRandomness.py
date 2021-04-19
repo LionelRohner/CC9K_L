@@ -1,8 +1,9 @@
 import os
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
-filename = "HGtest.fasta"
+filename = "HG1.fasta"
 path = os.getcwd() + "\\" + filename
 
 cnt = 0
@@ -20,5 +21,10 @@ with open(path ,"r") as fp:
         newRow = pd.DataFrame(np.array(ls).reshape(1,numEl), columns = list(df.columns))
 
         df = df.append(newRow, ignore_index=True)
+        if cnt == 1000:
+            break
 
-print(df)
+# hist = df.hist(column=["A","T","G","C"])
+# dfMean = df.mean()
+
+df.mean().plot(kind="bar")

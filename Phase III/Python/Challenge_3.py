@@ -17,7 +17,8 @@ data = {
     "A4"    : [],
     "A4.1"  : [],
     "A4.2"  : [],
-    "A_flex": []
+    "A_flex": [],
+    "AlgoNenad": []
 }
 
 benchMarkus = bp.BenchPress(data=data, benchMeth="Lionel")
@@ -142,7 +143,6 @@ for combo in itertools.product(*[d[k] for k in sorted(d.keys())]):
 
 f=open('HG4.fasta','a')
 np.savetxt(f, np.random.choice(tetramer, 8000000//4).reshape(100000,80//4), delimiter="", fmt="%s")
-
 """
 
 benchMarkus.getDaReps(algo=algo, algoN=algoN, nIter=10)
@@ -155,10 +155,15 @@ algo = """
 import itertools
 import numpy as np
 
-d ={'1':['A','C','T','G','A','C','T','G'],
-    '2':['A','C','T','G','A','C','T','G'],
-    '3':['A','C','T','G','A','C','T','G'],
-    '4':['A','C','T','G','A','C','T','G']}
+d ={'1':['A','C','T','G'],
+    '2':['A','C','T','G'],
+    '3':['A','C','T','G'],
+    '4':['A','C','T','G'],
+    '5': ['A', 'C', 'T', 'G'],
+    '6': ['A', 'C', 'T', 'G'],
+    '7': ['A', 'C', 'T', 'G'],
+    '8': ['A', 'C', 'T', 'G']
+    }
 tetramer = []
 for combo in itertools.product(*[d[k] for k in sorted(d.keys())]):
     tetramer.append(''.join(combo))
@@ -198,45 +203,49 @@ benchMarkus.getDaReps(algo=algo, algoN=algoN, nIter=10)
 ###################################################################################################################
 # Algo Flex
 
-algoN = "A_Flex"
-algo = """
-import numpy as np
+# algoN = "A_Flex"
+# algo = """
+# import numpy as np
+#
+# # funcs
+# def float2base(preAlloc):
+#     # Create boolean masks
+#     A = preAlloc < 0.25
+#     T = ((preAlloc > 0.25) & (preAlloc < 0.5))
+#     G = ((preAlloc > 0.5) & (preAlloc < 0.75))
+#     C = ((preAlloc > 0.75) & (preAlloc < 1))
+#     return(A,T,G,C)
+#
+# # variables
+# total = 8000000
+# mudolo = total % 80
+# r = (total // 80)
+#
+# f = open('HG_flex.fasta', 'a')
+#
+# # preallocate numbers
+# preAlloc = np.random.random(r*80).reshape(r, 80)
+#
+# # Create boolean masks
+# A,T,G,C = float2base(preAlloc)
+#
+# # Project boolean mask to random number array
+# seqs = np.where(A, "A", np.where(T, "T", np.where(G, "G", np.where(C, "C", 0))))
+# np.savetxt(f, seqs, delimiter="", fmt="%s")
+#
+# # repeat for remained
+#
+# # preallocate numbers
+# preAlloc = np.random.random(mudolo).reshape(1, mudolo)
+#
+# # Create boolean masks
+# A,T,G,C = float2base(preAlloc)
+# seqs = np.where(A, "A", np.where(T, "T", np.where(G, "G", np.where(C, "C", 0))))
+# np.savetxt(f, seqs, delimiter="", fmt="%s")
+# """
 
-# funcs
-def float2base(preAlloc):
-    # Create boolean masks
-    A = preAlloc < 0.25
-    T = ((preAlloc > 0.25) & (preAlloc < 0.5))
-    G = ((preAlloc > 0.5) & (preAlloc < 0.75))
-    C = ((preAlloc > 0.75) & (preAlloc < 1))
-    return(A,T,G,C)
-
-# variables
-total = 8000000
-mudolo = total % 80
-r = (total // 80)
-
-f = open('HG_flex.fasta', 'a')
-
-# preallocate numbers
-preAlloc = np.random.random(r*80).reshape(r, 80)
-
-# Create boolean masks
-A,T,G,C = float2base(preAlloc)
-
-# Project boolean mask to random number array
-seqs = np.where(A, "A", np.where(T, "T", np.where(G, "G", np.where(C, "C", 0))))
-np.savetxt(f, seqs, delimiter="", fmt="%s")
-
-# repeat for remained
-
-# preallocate numbers
-preAlloc = np.random.random(mudolo).reshape(1, mudolo)
-
-# Create boolean masks
-A,T,G,C = float2base(preAlloc)
-seqs = np.where(A, "A", np.where(T, "T", np.where(G, "G", np.where(C, "C", 0))))
-np.savetxt(f, seqs, delimiter="", fmt="%s")
-"""
 
 benchMarkus.getDaReps(algo=algo, algoN=algoN, nIter=10)
+
+
+benchMarkus.plotBP()
