@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0df014e-e466-4d18-9bbc-1152eb90887a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Fasta_Nenad.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Challenge_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Challenge_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CheckRandomness.py" beforeDir="false" afterPath="$PROJECT_DIR$/CheckRandomness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HG3_1.fasta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/create permutations.py" beforeDir="false" afterPath="$PROJECT_DIR$/create permutations.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,7 +23,7 @@
   <component name="ProjectId" id="1p4GpPdv7UAYQwsL17xKNnYk5je" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Phase II/Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">

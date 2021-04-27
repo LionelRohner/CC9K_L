@@ -28,6 +28,66 @@ library(Rcpp)
 # Code -------------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
+checkPrime <- function(numb){
+  upperBound <- sqrt(numb)
+  if(numb == 2){
+    return(TRUE)
+  } else if (any(numb %% 2:upperBound == 0)){
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
+
+checkPrimeRedux <- function(numb){
+  upperBound <- sqrt(numb)
+  if (any(numb %% 2:upperBound == 0)){
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
+
+primeEvalFast <- function(from = 0, to, countOnly = TRUE){
+  
+  # generate range vec for prime search
+  vecNat = from:to
+  outputPrimes = c()
+  
+  # extract search space reducing primes
+  exceptions <- which(vecNat == 2 | vecNat == 3 | vecNat == 5 | vecNat == 7)
+  outputPrimes <- vecNat[exceptions]
+  
+  # reduce search space
+  rmIdx <- c()
+  for (i in c(2,3,5,7)){
+    # rmIdx <- append(rmIdx, which(vecNat%%i == 0))
+    vecNat <- vecNat[-which(vecNat%%i == 0)]
+  }
+  
+  
+  # iterate through vec
+  if(countOnly == TRUE){
+    cnt = length(outputPrimes)
+    for(numb in vecNat){
+      if(checkPrime(numb)){
+        cnt = cnt + 1
+      }
+    }
+    return(cnt)
+  
+  } else {
+    for(numb in vecNat){
+      if(checkPrime(numb)){
+        outputPrimes <- append(outputPrimes, numb)
+      }
+    }
+    return(outputPrimes)
+  }
+}
+
+length(primeEvalFast(0,1e6, countOnly = F))
+primeEvalFast(0,1e6)
 
 getPrimes <- function(from, to){
   
@@ -88,7 +148,7 @@ getCyclicPrimes <- function(from,to){
   singleDigits <- X
 }
 
-primes <- getPrimes(1,1e6)
+primes <- getPrimes(1,1e5)
 
 # Cache vector for primes - reduces the number of iteration if primes are already in
 # this vectior. E.g. a cyclic prime with 3 digits will appear 3 times and should only
