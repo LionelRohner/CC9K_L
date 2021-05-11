@@ -156,6 +156,39 @@ primeEvalFaster <- function(from = 0, to, countOnly = TRUE){
 }
 
 
+primeEvalErathostenes <- function(to){
+  
+  # vars
+  upperBound = round(sqrt(to))
+  vecNat = rep(T, to)
+  
+  # expection from 1
+  vecNat[1] <- F
+  
+  # sieve of erathostenes
+  lastPrime = 2
+  
+  for (i in lastPrime:upperBound){
+    
+    # skip indeces that are already F
+    if (vecNat[i] == F){
+      lastPrime = lastPrime + 1
+      next
+    }
+
+    # find all multiples of primes as these must be composite
+    multiples <- seq(lastPrime*2, to, lastPrime)
+    vecNat[multiples] <- F
+
+    # redefine new prime
+    lastPrime = lastPrime + 1
+
+  }
+  
+  # return primes, i.e. those that are still TRUE
+  return(which(vecNat))
+}
+
 #------------------------------------------------------------------------------#
 # Cyclic Primes Function --------------------------------------------------
 #------------------------------------------------------------------------------#
@@ -203,7 +236,6 @@ getCyclicPrimes <- function(primes){
       # puts the last index at the first position and pushes the OG-vec to position 2
       rotVec <- rotVec[c(lastIdx,1:lastIdx-1)]
       
-      
       # if rotVec not in cache check whether rotations are primes
       rotVecNum <- as.numeric(paste(rotVec, collapse = "",sep = ""))
       cnt = cnt + 1
@@ -228,8 +260,8 @@ getCyclicPrimes <- function(primes){
 # Testing Area ------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
-
-primes <- primeEvalFast(0,1e3,countOnly = F)
+primes1 <- primeEvalFast(0,1e3,countOnly = F); primes1
+primes2 <- primeEvalErathostenes(1e3); primes2
 
 
 # Cache vector for primes - reduces the number of iteration if primes are already in
@@ -273,7 +305,6 @@ for(potCyclicPrimes in primes){
     # puts the last index at the first position and pushes the OG-vec to position 2
     rotVec <- rotVec[c(lastIdx,1:lastIdx-1)]
     
-    
     # if rotVec not in cache check whether rotations are primes
     rotVecNum <- as.numeric(paste(rotVec, collapse = "",sep = ""))
     cnt = cnt + 1
@@ -298,9 +329,9 @@ cyclicPrimes
 # Code -------------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
-# length(getCyclicPrimes(primeEvalFast(0,1e6,countOnly = F)))
+length(getCyclicPrimes(primeEvalFast(0,1e6,countOnly = F)))
 
-# length(getCyclicPrimes(primeEvalFaster(0,1e6,countOnly = F)))
+length(getCyclicPrimes(primeEvalErathostenes(1e6)))
 
 
 #------------------------------------------------------------------------------#
@@ -309,8 +340,12 @@ cyclicPrimes
 library(rbenchmark)
 
 test <- benchmark("Algo 1" = {length(getCyclicPrimes(primeEvalFast(0,1e6,countOnly = F)))},
-                  "Algo 2" = {length(getCyclicPrimes(primeEvalFaster(0,1e6,countOnly = F)))},
-                  replications = 3)
+                  "Algo 2" = {length(getCyclicPrimes(primeEvalErathostenes(1e6)))},
+                  replications = 10)
+
+test <- benchmark("Algo 1" = {primeEvalFast(0,1e6,countOnly = F)},
+                  "Algo 2" = {primeEvalErathostenes(1e6)},
+                  replications = 10)
 
 test$meanTime <- test$elapsed/test$replications
 test
