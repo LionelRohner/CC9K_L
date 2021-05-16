@@ -205,6 +205,8 @@ getCyclicPrimes <- function(primes){
   
   cnt = 0
   
+  primes = primes[!grepl("0|[0-9]+2|4|6|8", primes)]
+  
   # go through all rotations in all primes of the slice primesRot
   for(potCyclicPrimes in primes){
     
@@ -274,12 +276,15 @@ cyclicPrimes <- c()
 
 cnt = 0
 
+
 # go through all rotations in all primes of the slice primesRot
 for(potCyclicPrimes in primes){
   
   # transform prime to character vector to evaluate rotation
   rot <- as.character(potCyclicPrimes)
   rotVec <- unlist(strsplit(rot,""))
+  
+  # REMOVE all entries that have 2, 4, 6, or 8.
   
   # # check whether character prime vector has already been evaluated in some other rotation
   # redundancyChecker <- as.numeric(paste(sort(rotVec),collapse = ""))
@@ -290,7 +295,6 @@ for(potCyclicPrimes in primes){
   #   # else add character prime to cache
   #   rotVecCache <- append(rotVecCache, redundancyChecker)
   # }
-
   
   # rotation
   check = 0
@@ -333,19 +337,17 @@ length(getCyclicPrimes(primeEvalFast(0,1e6,countOnly = F)))
 
 length(getCyclicPrimes(primeEvalErathostenes(1e6)))
 
-
 #------------------------------------------------------------------------------#
 # Benchmark ---------------------------------------------------------------
 #------------------------------------------------------------------------------#
-library(rbenchmark)
 
 test <- benchmark("Algo 1" = {length(getCyclicPrimes(primeEvalFast(0,1e6,countOnly = F)))},
                   "Algo 2" = {length(getCyclicPrimes(primeEvalErathostenes(1e6)))},
-                  replications = 10)
+                  replications = 2)
 
-test <- benchmark("Algo 1" = {primeEvalFast(0,1e6,countOnly = F)},
-                  "Algo 2" = {primeEvalErathostenes(1e6)},
-                  replications = 10)
+# test <- benchmark("Algo 1" = {primeEvalFast(0,1e6,countOnly = F)},
+#                   "Algo 2" = {primeEvalErathostenes(1e6)},
+#                   replications = 5)
 
 test$meanTime <- test$elapsed/test$replications
 test
