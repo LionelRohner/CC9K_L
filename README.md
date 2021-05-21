@@ -4,9 +4,9 @@ CC9K is a hobby project consisting of solving coding challenges. Some of the pro
 
 # Projects so far:
 
-[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate) \quad <sub>Get it [here](https://github.com/nschloe/purple-pi?activate)</sub>  
+[![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate) 
 
-
+ <!--- <sub>Get it [here](https://github.com/nschloe/purple-pi?activate)</sub>  --->
 1. Find the sum of all the multiples of 3 or 5 up to one million. 
 2. By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 3. Randomly generate a sequence of 8 000 000 nucleotides (A, T, G, C) in FASTA format (80 characters per line separated by a newline) and save to .txt file.
