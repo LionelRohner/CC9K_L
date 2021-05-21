@@ -4,8 +4,10 @@ CC9K is a hobby project that consists of solving coding challenges. Some of the 
 
 # Projects so far:
 
-1.)
-2.)
-3.)
-4.)
+Rendered with <a href="https://github.com/nschloe/purple-pi?activate">Purple Pi</a>.
+
+1.
+2
+3)
+4.
 5.) How many, not necessarily distinct, values of $\binom{n}{r}$ for $1\leq n \leq 100$, are greater than one-million?
