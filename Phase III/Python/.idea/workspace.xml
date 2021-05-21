@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0df014e-e466-4d18-9bbc-1152eb90887a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase I/Nenad/Ex1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase I/Nenad/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenge_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Challenge_3_tester.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fasta_Nenad.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/create permutations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase IV/Challenge_4.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase IV/Challenge_4_v2.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase IV/Challenge_4_v3.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase IV/Challenge_4_v3_shortenIt.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase IV/Challenge_4_v4.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Phase Unclassified/Python/Challenge_3.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Template/CC9K.zip" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +36,7 @@
   <component name="ProjectId" id="1p4GpPdv7UAYQwsL17xKNnYk5je" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Phase II/Python" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -183,15 +196,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/create permutations.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
