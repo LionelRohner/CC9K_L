@@ -12,3 +12,7 @@ CC9K is a hobby project consisting of solving coding challenges. Some of the pro
 3. Randomly generate a sequence of 8 000 000 nucleotides (A, T, G, C) in FASTA format (80 characters per line separated by a newline) and save to .txt file.
 4. The number, 197, is called a circular prime because all rotations of the digits: 197, 971, and 719, are themselves prime. How many circular primes are there below one million?
 5. How many, not necessarily distinct, values of $\binom{n}{r}$ for $1\leq n \leq 100$, are greater than one-million?
+
+### Benchmarking:
+
+Benchmarking is done with [BenchPress]()
