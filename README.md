@@ -6,7 +6,7 @@ CC9K is a hobby project that consists of solving coding challenges. Some of the 
 
 [![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate) <br/>
 
-<font size="-2">Get it [here](https://github.com/nschloe/purple-pi?activate)</font>  
+<sub>Get it [here](https://github.com/nschloe/purple-pi?activate)</sub>  
 
 
 1.
