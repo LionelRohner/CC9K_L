@@ -1,8 +1,8 @@
-## CC9K - Coding Challenge 9000
+# CC9K - Coding Challenge 9000
 
 CC9K is a hobby project consisting of solving coding challenges. Some of the projects were taken from [Project Euler] (https://projecteuler.net/), other challenges were designed by ourselves. The idea is to implement a solution that is preferably as fast as possible. However, code readability should not be completely neglected, hence there should be a healthy trade-off between speed and code readability.
 
-# Projects so far:
+### Projects so far:
 
 [![purple-pi](https://img.shields.io/badge/Rendered%20with-Purple%20Pi-bd00ff?style=flat-square)](https://github.com/nschloe/purple-pi?activate) 
 
