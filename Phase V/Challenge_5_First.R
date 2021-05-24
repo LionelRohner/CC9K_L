@@ -2,7 +2,7 @@
 # Task --------------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
-# How many, not necessarily distinct, values of $\binom{n}{r}$ for $1\leq n \leq
+# How many, not necessarily distinct, values of choose(n,r) for 1 \leq n \leq
 # 100$, are greater than one-million?\\[15pt]
 
 # r \leq n
@@ -12,77 +12,60 @@
 #------------------------------------------------------------------------------#
 
 library(rbenchmark)
-library(comprehenr)
 
 #------------------------------------------------------------------------------#
 # Functions ---------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
-list_comp_2d <- function(row, col, x = NULL, cond = NULL){
+# main
+challenge_V <- function(countOnly = T, upperLim = 1e6, n, r){
   
-  if (require(comprehenr) == F){
-    message("Install \"comprehener\" \n")
-    return(NULL)
-  }
-  
-  if (is.null(x) & is.null(cond)){
-    return(t(matrix(to_vec(for (i in 1:(row*col)) i), nrow = col))) 
+  if(countOnly){
     
-  } else if (!is.null(x) & is.null(cond)) {
-    return(t(matrix(to_vec(for (i in 1:(row*col)) eval(parse(text=x))), nrow = col)))
+    # create an upper triangular matrix, because r should be smaller than n
+    # Moreover, the diagonal can be excluded as choose(n,n) is always one
+    A <- upper.tri(matrix(NA,nrow = n, ncol = r), diag = F)
     
-  } else if (!is.null(cond) & is.null(x)){
+    # Output array indeces (matrix of row and col indeces), where TRUE
+    idx <- which(A == T, arr.ind = T)
     
-    # counting elements that are required of matrix of dim(row,col)
-    elements = row*col
+    # vectorized binom coefficient calculation for all indeces of interest.
+    return(length(which(choose(idx[,"col"],idx[,"row"]) > upperLim)))
+  } else {
     
-    # count how many iterations are required given the condition
+    # create an upper triangular matrix, because r should be smaller than n
+    # Here diagonal is computed to avoid confusion of 0s on the diagonal
+    A <- upper.tri(matrix(NA,nrow = n, ncol = r), diag = T)
     
-    cnt = 0
-    for (i in 1:10^6){
-      if(eval(parse(text=cond))){
-        cnt = cnt + 1
-      }
-      if (cnt == elements){
-        maxElements = i
-        break
+    # Output array indeces (matrix of row and col indeces), where TRUE
+    idx <- which(A == T, arr.ind = T)
+    for (i in idx[,"row"]){
+      for (j in idx[,"col"]){
+        A[i,j] <- choose(j,i)
       }
     }
-    
-    # use upper limit (maxElements) for iteration 
-    return(t(matrix(to_vec(for (i in 1:maxElements) if(eval(parse(text=cond))) i ), nrow = row)))
-  }
+    return(A)
+  } 
 }
-
 
 #------------------------------------------------------------------------------#
 # Testing Area ------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
+# Example 1
 choose(5,3)
+
+# Example 2
 choose(23,10)
 
-binomCoef <- function(n,r){
-  return(factorial(n)/(factorial(r)*factorial(n-r)))
-}
+n = r = 10
 
-binomCoef(5,3)
-
-list_comp_2d(row = 23, col = 10,cond = )
-
-list_comp_2d(row = 23,col = 10, x = "choose(n,r)")
-
-n = 10
-r = 10
-
-# diag = F as all of these entries are 1
+# create an upper triangular matrix, because r should be smaller than n
+# Moreover, the diagonal can be excluded as choose(n,n) is always one
 A <- upper.tri(matrix(NA,nrow = n, ncol = r), diag = F)
+
+# Output array indeces (matrix of row and col indeces), where TRUE
 idx <- which(A == T, arr.ind = T)
-
-
-choose(idx[,1],idx[,2])
-
-
 
 for (i in idx[,1]){
   for (j in idx[,2]){
@@ -92,18 +75,20 @@ for (i in idx[,1]){
 
 nrow(which(A > 1e6, arr.ind = T))
 
+
 #------------------------------------------------------------------------------#
 # Code -------------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
+challenge_V(n = 100, r = 100, countOnly = F)
 
 #------------------------------------------------------------------------------#
 # Benchmark ---------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
-test <- benchmark("Algo1" = {},
+test <- benchmark("Algo1" = {challenge_V(n = 100, r = 100)},
+                  "Algo1_loops" = {challenge_V(n = 100, r = 100, countOnly = F)},
                   replications = 10)
-
 
 
 test$meanTime <- test$elapsed/test$replications
