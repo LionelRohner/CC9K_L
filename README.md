@@ -15,4 +15,4 @@ CC9K is a hobby project consisting of solving coding challenges. Some of the pro
 
 ### Benchmarking:
 
-Benchmarking is done with [BenchPress]()
+Benchmarking is done with [BenchPress](https://github.com/LionelRohner/BenchPress) for Python, and [rbenchmark](https://cran.r-project.org/web/packages/rbenchmark/index.html) for R.
