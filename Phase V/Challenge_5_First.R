@@ -17,6 +17,14 @@ library(rbenchmark)
 # Functions ---------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
+n = 10
+
+A <- upper.tri(matrix(NA,nrow = n, ncol = r), diag = F)
+
+idx <- which(A == T, arr.ind = T)
+
+class(idx)
+
 # main
 challenge_V <- function(countOnly = T, upperLim = 1e6, n, r){
   
