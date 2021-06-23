@@ -95,6 +95,20 @@ challenge_V_v2 <- function(countOnly = T, upperLim = 1e6, n, r){
   } 
 }
 
+# new idea - iterative but on reduced search space
+
+cnt = 0
+for (n in 1:100){
+  if (choose(n,n%/%2) >= 1e6){
+    cnt = cnt + 1
+    for (k in n%/%2:n){
+      if (choose(n,k+1) >= 1e6){
+        cnt = cnt + 2
+      } 
+    }
+  } 
+}; cnt
+
 #------------------------------------------------------------------------------#
 # Testing Area ------------------------------------------------------------
 #------------------------------------------------------------------------------#
