@@ -15,7 +15,6 @@ with open(path ,"r") as fp:
         cnt += 1
         ls = [cnt, line.count("A"),line.count("G"),line.count("T"),line.count("C")]
 
-
         numEl = len(ls)
 
         newRow = pd.DataFrame(np.array(ls).reshape(1,numEl), columns = list(df.columns))

@@ -51,12 +51,59 @@ primeEvalErathostenes <- function(to){
 
 primes <- primeEvalErathostenes(10)
 
-combCnt = 0
+
+# INIT
+
+result <- data.frame(val = -1, combCnt = -1)
+mudoloSoFar <- c()
+
+
+
 val = 10
 
-10%/%2
+combCnt = 0
+for (i in primes){
+  
+  mudolo <- val%%i
+  
+  
+  # this catches all single primes sums, e.g. 2+2+2 or 3+3
+  if(mudolo==0){
+    times <- val%/%i
+    if(sum(rep(i,times))==val)
+      # print(rep(i,times))
+    combCnt <- combCnt + 1
+    
+  } else if (mudolo %in% primes){
+    
+    times <- floor(val%/%i)
+    
+    if(sum(c(rep(i,times),mudolo))==val)
+      # print(c(rep(i,times),mudolo))
+      combCnt <- combCnt +1
+  } else {
+    mudolo <- -1}
+  
+  print(mudolo)
+  if (mudolo %in% result[,1]){
+    combCnt = combCnt + result[which(result[,1]==mudolo),1]
+    print("yes")
+  } else {
+    mudoloSoFar <- append(mudoloSoFar, mudolo)
+    print("no")
+  }
+}
 
-10%%2
+result <- rbind(result, c(val,combCnt))
+
+
+mudoloSoFar
+
+
+
+
+# Garbage Code ------------------------------------------------------------
+
 
 for (i in primes){
   
