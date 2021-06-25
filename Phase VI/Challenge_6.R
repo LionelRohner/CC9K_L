@@ -49,7 +49,7 @@ primeEvalErathostenes <- function(to){
   return(which(vecNat))
 }
 
-primes <- primeEvalErathostenes(10)
+primes <- primeEvalErathostenes(2)
 
 
 # INIT
@@ -60,41 +60,56 @@ mudoloSoFar <- c()
 
 
 val = 10
+# while(result[val,2] < 5000){
+#   
+# }
 
-combCnt = 0
-for (i in primes){
+
+for (val in 4:10){
+  combCnt = 0
   
-  mudolo <- val%%i
-  
-  
-  # this catches all single primes sums, e.g. 2+2+2 or 3+3
-  if(mudolo==0){
-    times <- val%/%i
-    if(sum(rep(i,times))==val)
-      # print(rep(i,times))
-    combCnt <- combCnt + 1
+  primes <- primeEvalErathostenes(val)
+  for (i in primes){
     
-  } else if (mudolo %in% primes){
+    mudolo <- val%%i
     
-    times <- floor(val%/%i)
+    # this catches all single primes sums, e.g. 2+2+2 or 3+3
+    if(mudolo==0){
+      times <- val%/%i
+      if(sum(rep(i,times))==val)
+        print(rep(i,times))
+        combCnt <- combCnt + 1
+      
+    } else if (mudolo %in% primes){
+      
+      times <- floor(val%/%i)
+      
+      if(sum(c(rep(i,times),mudolo))==val)
+        print(c(rep(i,times),mudolo))
+        combCnt <- combCnt +1
+    } else if (mudolo == 1){
+      next
+    } 
     
-    if(sum(c(rep(i,times),mudolo))==val)
-      # print(c(rep(i,times),mudolo))
-      combCnt <- combCnt +1
-  } else {
-    mudolo <- -1}
-  
-  print(mudolo)
-  if (mudolo %in% result[,1]){
-    combCnt = combCnt + result[which(result[,1]==mudolo),1]
-    print("yes")
-  } else {
-    mudoloSoFar <- append(mudoloSoFar, mudolo)
-    print("no")
+    if (mudolo == 0){
+      next
+    }
+    
+    if (mudolo %in% result[,1]){
+      combCnt = combCnt + result[which(result[,1]==mudolo),2]
+      print("yes")
+    } else {
+      mudoloSoFar <- append(mudoloSoFar, mudolo)
+      print("no")
+    }
+
   }
+  result <- rbind(result, c(val,combCnt))
 }
 
-result <- rbind(result, c(val,combCnt))
+
+
+result
 
 
 mudoloSoFar
