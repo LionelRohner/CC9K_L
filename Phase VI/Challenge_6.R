@@ -20,6 +20,7 @@ primeEvalErathostenes <- function(to){
   
   # vars
   upperBound = round(sqrt(to))
+  print(upperBound)
   vecNat = rep(T, to)
   
   # expection from 1
@@ -49,26 +50,120 @@ primeEvalErathostenes <- function(to){
   return(which(vecNat))
 }
 
-primes <- primeEvalErathostenes(2)
+primeEvalErathostenes(7)
 
 
 # INIT
 
-result <- data.frame(val = -1, combCnt = -1)
-mudoloSoFar <- c()
+result <- data.frame(val = c(2,3), combCnt = c(1,1))
 
-
-
-val = 10
 # while(result[val,2] < 5000){
 #   
 # }
-
 
 for (val in 4:10){
   combCnt = 0
   
   primes <- primeEvalErathostenes(val)
+  
+  for (i in primes){
+    
+    if (i > val-2){
+      next
+    }
+    
+    mudolo <- val%%i
+    times <- val%/%i
+    
+    if (times == 1 & mudolo == 0){
+      next
+    }
+    
+    message("val: ", val," || ", "i: ",i)
+    
+    # this catches all single primes sums, e.g. 2+2+2 or 3+3
+    if(mudolo==0){
+      # times <- val%/%i
+      if(i*times == val)
+        print("without %")
+        print(rep(i,times))
+        combCnt <- combCnt + 1
+        next
+      
+    } else if (mudolo %in% result[,1]){
+      # times <- val%/%i
+      if(i*times + mudolo == val)
+        print("with %")
+        print(c(rep(i,times),mudolo))
+        combCnt = combCnt + result[which(result[,1]==mudolo),2]
+        # print("yes")
+        
+    } else if (mudolo == 1){
+      next
+    } 
+    
+    
+
+  }
+  result <- rbind(result, c(val,combCnt))
+}
+
+
+ result
+
+2*5 == 2+2+2+2+2
+
+# Test Area ---------------------------------------------------------------
+
+combCnt = 0
+
+val = 10
+i = 2
+mudolo <- val%%i; mudolo
+times <- val%/%i; times
+
+
+i^times + mudolo == sum(rep(i,times),mudolo)
+
+if (times == 1 & mudolo == 0){
+  # next
+  print("skip")
+}
+
+# this catches all single primes sums, e.g. 2+2+2 or 3+3
+if(mudolo==0){
+  # times <- val%/%i
+  if(i^times == val)
+    print(rep(i,times))
+  combCnt <- combCnt + 1
+  # next
+  
+# } else if (mudolo == 2){
+#   if(i^times + mudolo == val){
+#     combCnt = combCnt + 1
+#   }
+  
+} else if (mudolo %in% result[,1]){
+  # times <- val%/%i
+  if(i^times + mudolo == val)
+    print(c(rep(i,times),mudolo))
+  combCnt = combCnt + result[which(result[,1]==mudolo),2]
+  print("yes")
+  
+} else if (mudolo == 1){
+  # next
+  print("1")
+}; combCnt
+
+
+
+# Garbage Code ------------------------------------------------------------
+
+for (val in 4:10){
+  combCnt = 0
+  
+  primes <- primeEvalErathostenes(val)
+  
   for (i in primes){
     
     mudolo <- val%%i
@@ -78,15 +173,15 @@ for (val in 4:10){
       times <- val%/%i
       if(sum(rep(i,times))==val)
         print(rep(i,times))
-        combCnt <- combCnt + 1
+      combCnt <- combCnt + 1
       
     } else if (mudolo %in% primes){
       
-      times <- floor(val%/%i)
+      times <- val%/%i
       
       if(sum(c(rep(i,times),mudolo))==val)
         print(c(rep(i,times),mudolo))
-        combCnt <- combCnt +1
+      combCnt <- combCnt +1
     } else if (mudolo == 1){
       next
     } 
@@ -102,47 +197,9 @@ for (val in 4:10){
       mudoloSoFar <- append(mudoloSoFar, mudolo)
       print("no")
     }
-
+    
   }
   result <- rbind(result, c(val,combCnt))
 }
 
-
-
-result
-
-
-mudoloSoFar
-
-
-
-
-# Garbage Code ------------------------------------------------------------
-
-
-for (i in primes){
-  
-  # this catches all single primes sums, e.g. 2+2+2 or 3+3
-  if(val%%i==0){
-    times <- val%/%i
-    if(sum(rep(i,times))==val)
-      print(rep(i,times))
-      combCnt <- combCnt + 1
-  }
-  
-  # this catches sums of two primes, e.g. 2+2+2+2+5, or 7+3
-  mudolo <- val%%i
-  if(mudolo %in% primes){
-    times <- floor(val%/%i)
-    if(sum(c(rep(i,times),mudolo))==val)
-      print(c(rep(i,times),mudolo))
-      combCnt <- combCnt +1
-  }
-  
-  # now the combinations of more than 2 primes is required.
-  # An idea, would be to save all combinations to avoid recalculating all combos
-  # if val is 5, save 5+3 and when 10 is next, just double it 3+2+3+2
-}
-
-combCnt
 
