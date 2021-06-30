@@ -15,6 +15,9 @@ library(rbenchmark)
 # Functions ---------------------------------------------------------------
 #------------------------------------------------------------------------------#
 
+# not in
+`%notin%` <- Negate(`%in%`)
+
 # find primes
 primeEvalErathostenes <- function(to){
   
@@ -66,7 +69,12 @@ for (val in 4:10){
   
   primes <- primeEvalErathostenes(val)
   
-  for (i in primes){
+  is <- c()
+  
+  for (i in result[,1]){
+    
+    is <- c(is,i)
+    
     
     if (i > val-2){
       next
@@ -75,9 +83,9 @@ for (val in 4:10){
     mudolo <- val%%i
     times <- val%/%i
     
-    if (times == 1 & mudolo == 0){
-      next
-    }
+    # if (times == 1 & mudolo == 0){
+    #   next
+    # }
     
     message("val: ", val," || ", "i: ",i)
     
@@ -98,8 +106,16 @@ for (val in 4:10){
         combCnt = combCnt + result[which(result[,1]==mudolo),2]
         # print("yes")
         
-    } else if (mudolo == 1){
-      next
+    } else if (mudolo == 1 & times > 1){
+      mudoloPlus <- mudolo + i
+      if(mudoloPlus %in% primes & mudoloPlus %notin% is){
+        if(i*times-1 + mudoloPlus == val){
+          print("with %+")
+          print(c(rep(i,times),mudoloPlus))
+          combCnt = combCnt + result[which(result[,1]==mudoloPlus),2]
+        }
+          
+      }
     } 
     
     
@@ -109,7 +125,7 @@ for (val in 4:10){
 }
 
 
- result
+result
 
 2*5 == 2+2+2+2+2
 
@@ -134,6 +150,7 @@ if (times == 1 & mudolo == 0){
 if(mudolo==0){
   # times <- val%/%i
   if(i^times == val)
+    print("withouot %")
     print(rep(i,times))
   combCnt <- combCnt + 1
   # next
@@ -146,6 +163,7 @@ if(mudolo==0){
 } else if (mudolo %in% result[,1]){
   # times <- val%/%i
   if(i^times + mudolo == val)
+    print("with %")
     print(c(rep(i,times),mudolo))
   combCnt = combCnt + result[which(result[,1]==mudolo),2]
   print("yes")
@@ -159,6 +177,7 @@ if(mudolo==0){
 
 # Garbage Code ------------------------------------------------------------
 
+
 for (val in 4:10){
   combCnt = 0
   
@@ -166,40 +185,42 @@ for (val in 4:10){
   
   for (i in primes){
     
+    if (i > val-2){
+      next
+    }
+    
     mudolo <- val%%i
+    times <- val%/%i
+    
+    if (times == 1 & mudolo == 0){
+      next
+    }
+    
+    message("val: ", val," || ", "i: ",i)
     
     # this catches all single primes sums, e.g. 2+2+2 or 3+3
     if(mudolo==0){
-      times <- val%/%i
-      if(sum(rep(i,times))==val)
-        print(rep(i,times))
+      # times <- val%/%i
+      if(i*times == val)
+        print("without %")
+      print(rep(i,times))
       combCnt <- combCnt + 1
+      next
       
-    } else if (mudolo %in% primes){
+    } else if (mudolo %in% result[,1]){
+      # times <- val%/%i
+      if(i*times + mudolo == val)
+        print("with %")
+      print(c(rep(i,times),mudolo))
+      combCnt = combCnt + result[which(result[,1]==mudolo),2]
+      # print("yes")
       
-      times <- val%/%i
-      
-      if(sum(c(rep(i,times),mudolo))==val)
-        print(c(rep(i,times),mudolo))
-      combCnt <- combCnt +1
     } else if (mudolo == 1){
       next
     } 
     
-    if (mudolo == 0){
-      next
-    }
     
-    if (mudolo %in% result[,1]){
-      combCnt = combCnt + result[which(result[,1]==mudolo),2]
-      print("yes")
-    } else {
-      mudoloSoFar <- append(mudoloSoFar, mudolo)
-      print("no")
-    }
     
   }
   result <- rbind(result, c(val,combCnt))
 }
-
-
