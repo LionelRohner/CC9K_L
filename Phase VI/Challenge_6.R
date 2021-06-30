@@ -71,7 +71,7 @@ for (val in 4:10){
   
   is <- c()
   
-  for (i in result[,1]){
+  for (i in primes){
     
     is <- c(is,i)
     
