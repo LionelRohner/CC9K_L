@@ -148,11 +148,11 @@ for (i in 1:upperLim){
   DF <- cbind(DF,all)
 }
 
-expand.grid(replicate())
-?replicate
+expand.grid(replicate(upperLim,all,simplify = F))
 
 
-# Garbage Code ------------------------------------------------------------
+
+ # Garbage Code ------------------------------------------------------------
 
 
 for (val in 4:10){
