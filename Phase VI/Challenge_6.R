@@ -129,50 +129,27 @@ result
 
 2*5 == 2+2+2+2+2
 
+# use expand grid: use number of primes as the number of arguments
+expand.grid()
+
 # Test Area ---------------------------------------------------------------
 
-combCnt = 0
+val <- 10
 
-val = 10
-i = 2
-mudolo <- val%%i; mudolo
-times <- val%/%i; times
+primes <- primeEvalErathostenes(10); primes
 
+lastIndex <- primes[max(which(primes <= sqrt(val)))]
+upperLim <- primes[1]*lastIndex
 
-i^times + mudolo == sum(rep(i,times),mudolo)
+all <- rep(primes,upperLim)
 
-if (times == 1 & mudolo == 0){
-  # next
-  print("skip")
+DF <- c()
+for (i in 1:upperLim){
+  DF <- cbind(DF,all)
 }
 
-# this catches all single primes sums, e.g. 2+2+2 or 3+3
-if(mudolo==0){
-  # times <- val%/%i
-  if(i^times == val)
-    print("withouot %")
-    print(rep(i,times))
-  combCnt <- combCnt + 1
-  # next
-  
-# } else if (mudolo == 2){
-#   if(i^times + mudolo == val){
-#     combCnt = combCnt + 1
-#   }
-  
-} else if (mudolo %in% result[,1]){
-  # times <- val%/%i
-  if(i^times + mudolo == val)
-    print("with %")
-    print(c(rep(i,times),mudolo))
-  combCnt = combCnt + result[which(result[,1]==mudolo),2]
-  print("yes")
-  
-} else if (mudolo == 1){
-  # next
-  print("1")
-}; combCnt
-
+expand.grid(replicate())
+?replicate
 
 
 # Garbage Code ------------------------------------------------------------
