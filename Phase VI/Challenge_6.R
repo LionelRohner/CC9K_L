@@ -23,7 +23,7 @@ primeEvalErathostenes <- function(to){
   
   # vars
   upperBound = round(sqrt(to))
-  print(upperBound)
+  # print(upperBound)
   vecNat = rep(T, to)
   
   # expection from 1
@@ -53,7 +53,7 @@ primeEvalErathostenes <- function(to){
   return(which(vecNat))
 }
 
-primeEvalErathostenes(7)
+primeEvalErathostenes(11)
 
 
 # INIT
