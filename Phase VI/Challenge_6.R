@@ -18,8 +18,39 @@ library(rbenchmark)
 # not in
 `%notin%` <- Negate(`%in%`)
 
-# find primes
+# coin change algo
+
+coin_change_algo <- function(coins, N){
+  
+  # create vars
+  ways = rep(0,N+1)
+  lenCoils = length(coins)
+  lenWays = N+1
+  
+  # Initialize Algo
+  ways[1] = 1
+  
+  
+  # do dynamic programming
+  for (i in 1:lenCoils){
+    for (j in 1:length(ways)){
+      if (coins[i] < j){
+        ways[j] <- ways[j] + ways[(j - coins[i])]
+      }
+    }
+  }
+  return(ways[N])
+}
+
+# sieve of erathosthenes
 primeEvalErathostenes <- function(to){
+  
+  # exceptions
+  if (to == 2){
+    return(2)
+  } else if (to == 3){
+    return(3)
+  }
   
   # vars
   upperBound = round(sqrt(to))
@@ -53,8 +84,28 @@ primeEvalErathostenes <- function(to){
   return(which(vecNat))
 }
 
-primeEvalErathostenes(11)
 
+# Solution - Works --------------------------------------------------------
+
+euler_77 <- function(){
+  euler = FALSE
+  i <- 2
+  
+  while (euler != TRUE){
+    primes <- primeEvalErathostenes(i)
+    
+    if (coin_change_algo(primes, i) <= 5000){
+      i <- i + 1
+    } else {
+      euler <- TRUE
+      return(max(primes))
+    }
+  }
+}
+
+euler_77()
+
+# Old Version - Not Working Correctly -------------------------------------
 
 # INIT
 

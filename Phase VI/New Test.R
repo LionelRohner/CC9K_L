@@ -20,29 +20,6 @@ for (i in primesUpTo){
 }
 
 
-# coin change algo
-
-coin_change_algo <- function(coins, N){
-  
-  # create vars
-  ways = rep(0,N+1)
-  lenCoils = length(coins)
-  lenWays = N+1
-  
-  # Initialize Algo
-  ways[1] = 1
-  
-  
-  # do dynamic programming
-  for (i in 1:lenCoils){
-    for (j in 1:length(ways)){
-      if (coins[i] < j){
-        ways[j] <- ways[j] + ways[(j - coins[i])]
-      }
-    }
-  }
-  return(ways[N])
-}
 
 N <- 6
 coins <- c(1,2)
